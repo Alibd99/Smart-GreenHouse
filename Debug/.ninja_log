@@ -1,0 +1,38 @@
+# ninja log v5
+5	293	7026736390593884	C:/Users/Wookie/Desktop/Project/Debug/Obj/Alarm.o	afe8dbdf50e2f98e
+5	113	7026747309253471	C:/Users/Wookie/Desktop/Project/Debug/Obj/Temperature.o	6564bbc7ede26ab6
+4	65	7024946284117239	C:/Users/Wookie/Desktop/Project/Debug/Obj/cstartup.o	8742400b55eda3b1
+20	324	7026736390853211	C:/Users/Wookie/Desktop/Project/Debug/Obj/Keypad.o	e54a0f064fb5e98b
+4	223	7026746456571970	C:/Users/Wookie/Desktop/Project/Debug/Obj/ADC.o	91fef6fea47be41
+1	202	7026746456342598	C:/Users/Wookie/Desktop/Project/Debug/Obj/Calender.o	868dae06019042bf
+54	268	7024946285852602	C:/Users/Wookie/Desktop/Project/Debug/Obj/menu.o	42c3e6acccfeaabf
+286	355	7024946286964771	C:/Users/Wookie/Desktop/Project/Debug/Obj/exceptions.o	c8c996c1df85c774
+12	261	7026736390294682	C:/Users/Wookie/Desktop/Project/Debug/Obj/LinkList.o	8db8476c6e52b1c5
+319	452	7024946287907335	C:/Users/Wookie/Desktop/Project/Debug/Obj/startup_sam3x.o	dd2bcc0cec53122a
+1	291	7026750197384958	C:/Users/Wookie/Desktop/Project/Debug/Obj/Display.o	70bf2fb0f96ac868
+16	296	7026736390593884	C:/Users/Wookie/Desktop/Project/Debug/Obj/Pulse Width Modulation.o	64676d3a959b904b
+224	291	7026043717947920	C:/Users/Wookie/Desktop/Project/Debug/Obj/Print.o	237202f89b525375
+455	562	7024946289029425	C:/Users/Wookie/Desktop/Project/Debug/Obj/system_sam3x.o	9eae85ad0331d08
+11	316	7026746457489545	C:/Users/Wookie/Desktop/Project/Debug/Obj/main.o	df1969bce06e9711
+294	350	7026750198200430	C:/Users/Wookie/Desktop/Project/Debug/Exe/The Green House.out	c49de4fadac1a068
+4	153	7026755158205405	C:/Users/Wookie/Desktop/Project/Debug/Obj/Calender.o	868dae06019042bf
+1	198	7026755158454745	C:/Users/Wookie/Desktop/Project/Debug/Obj/Alarm.o	afe8dbdf50e2f98e
+201	256	7026755159225231	C:/Users/Wookie/Desktop/Project/Debug/Exe/The Green House.out	c49de4fadac1a068
+0	126	7026756686240342	C:/Users/Wookie/Desktop/Project/Debug/Obj/Calender.o	868dae06019042bf
+20	147	7026756686449769	C:/Users/Wookie/Desktop/Project/Debug/Obj/Pulse Width Modulation.o	64676d3a959b904b
+8	171	7026756686669189	C:/Users/Wookie/Desktop/Project/Debug/Obj/Alarm.o	afe8dbdf50e2f98e
+4	185	7026756686729054	C:/Users/Wookie/Desktop/Project/Debug/Obj/ADC.o	91fef6fea47be41
+16	198	7026756686938471	C:/Users/Wookie/Desktop/Project/Debug/Obj/Keypad.o	e54a0f064fb5e98b
+128	257	7026756687566780	C:/Users/Wookie/Desktop/Project/Debug/Obj/LinkList.o	8db8476c6e52b1c5
+174	286	7026756687836387	C:/Users/Wookie/Desktop/Project/Debug/Obj/Temperature.o	6564bbc7ede26ab6
+11	289	7026756687856310	C:/Users/Wookie/Desktop/Project/Debug/Obj/Display.o	70bf2fb0f96ac868
+150	324	7026756688234995	C:/Users/Wookie/Desktop/Project/Debug/Obj/main.o	df1969bce06e9711
+327	384	7026756688823409	C:/Users/Wookie/Desktop/Project/Debug/Exe/The Green House.out	c49de4fadac1a068
+1	310	7026763321997590	C:/Users/Wookie/Desktop/Project/Debug/Obj/Display.o	70bf2fb0f96ac868
+313	369	7026763322818172	C:/Users/Wookie/Desktop/Project/Debug/Exe/The Green House.out	c49de4fadac1a068
+1	212	7026764570003048	C:/Users/Wookie/Desktop/Project/Debug/Obj/Display.o	70bf2fb0f96ac868
+214	270	7026764570598442	C:/Users/Wookie/Desktop/Project/Debug/Exe/The Green House.out	c49de4fadac1a068
+1	282	7026767690266125	C:/Users/Wookie/Desktop/Project/Debug/Obj/Display.o	70bf2fb0f96ac868
+285	341	7026767690985377	C:/Users/Wookie/Desktop/Project/Debug/Exe/The Green House.out	c49de4fadac1a068
+1	213	7026768637116351	C:/Users/Wookie/Desktop/Project/Debug/Obj/Display.o	70bf2fb0f96ac868
+216	274	7026768637754915	C:/Users/Wookie/Desktop/Project/Debug/Exe/The Green House.out	c49de4fadac1a068

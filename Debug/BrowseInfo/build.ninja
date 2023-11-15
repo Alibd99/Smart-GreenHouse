@@ -1,0 +1,183 @@
+##IAR Ninja build file
+
+
+#Rules
+rule COMPILER_XCL
+  command = "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\XclFileGenerator.exe" $xclcommand -f "$rspfile_name"
+  description = IAR_NEW_TOOL+++COMPILER_XCL+++$in+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\XclFileGenerator.exe" $flags
+  rspfile = $rspfile_name
+  rspfile_content = $flags
+
+rule INDEXER
+  command = "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\SourceIndexer.exe" $flags
+  depfile = $out.dep
+  description = IAR_NEW_TOOL+++INDEXER+++$out+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\SourceIndexer.exe" $flags
+
+rule MAKEBROWSE
+  command = "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\makeBrowseData.exe" $flags
+  description = IAR_NEW_TOOL+++MAKEBROWSE+++$out+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\makeBrowseData.exe" $flags
+
+rule PDBLINK
+  command = "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\PbdLink.exe" $flags
+  description = IAR_NEW_TOOL+++PDBLINK+++$out+++"C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\common\bin\PbdLink.exe" $flags
+
+
+
+#Build steps
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\ADC.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\ADC.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\Alarm.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\Alarm.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\Calender.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\Calender.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\Display.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\Display.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\exceptions.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\exceptions.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\Keypad.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\Keypad.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\LinkList.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\LinkList.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\main.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\main.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\menu.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\menu.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\Print.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\Print.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.xcl : COMPILER_XCL 
+  xclcommand = -source_file "C$:\Users\Wookie\Desktop\Project\Pulse$ Width$ Modulation.c" -xcl_file "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.xcl" -macro_file "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.tmp" -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = "C$:\Users\Wookie\Desktop\Project\Pulse$ Width$ Modulation.c" -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.tmp"
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\startup_sam3x.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\startup_sam3x.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\system_sam3x.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\system_sam3x.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.xcl : COMPILER_XCL 
+  xclcommand = -source_file C$:\Users\Wookie\Desktop\Project\Temperature.c -xcl_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.xcl -macro_file C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.tmp -icc_path "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\bin\iccarm.exe"
+  flags = C$:\Users\Wookie\Desktop\Project\Temperature.c -o C$:\Users\Wookie\Desktop\Project\Debug\Obj\ --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little --cpu=Cortex-M3 -e --fpu=None --dlib_config "C$:\Program$ Files\IAR$ Systems\Embedded$ Workbench$ 9.1\arm\inc\c\DLib_Config_Normal.h" -Ol --predef_macros C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.tmp
+  rspfile_name = C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.xcl.rsp
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.xcl |  $
+C$:\Users\Wookie\Desktop\Project\ADC.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.xcl |  $
+C$:\Users\Wookie\Desktop\Project\Alarm.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.xcl |  $
+C$:\Users\Wookie\Desktop\Project\Calender.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.xcl |  $
+C$:\Users\Wookie\Desktop\Project\Display.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.xcl |  $
+C$:\Users\Wookie\Desktop\Project\exceptions.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.xcl |  $
+C$:\Users\Wookie\Desktop\Project\Keypad.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.xcl |  $
+C$:\Users\Wookie\Desktop\Project\LinkList.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.xcl |  $
+C$:\Users\Wookie\Desktop\Project\main.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.xcl |  $
+C$:\Users\Wookie\Desktop\Project\menu.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.xcl |  $
+C$:\Users\Wookie\Desktop\Project\Print.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.xcl |  $
+C$:\Users\Wookie\Desktop\Project\Pulse$ Width$ Modulation.c
+  flags = "-out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.pbi" -f "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.xcl"
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.xcl |  $
+C$:\Users\Wookie\Desktop\Project\startup_sam3x.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.xcl |  $
+C$:\Users\Wookie\Desktop\Project\system_sam3x.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.pbi : INDEXER C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.xcl |  $
+C$:\Users\Wookie\Desktop\Project\Temperature.c
+  flags = -out=C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.pbi -f C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.xcl
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House.pbw : MAKEBROWSE C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House.pbd
+  flags = "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House.pbd" -output "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House.pbw"
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part0.pbi : PDBLINK C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.pbi |  $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.pbi $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.pbi $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.pbi
+  flags = -M "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part0.pbi" C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\ADC.pbi C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Alarm.pbi C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Calender.pbi C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Display.pbi
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part1.pbi : PDBLINK C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.pbi |  $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.pbi $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.pbi $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.pbi
+  flags = -M "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part1.pbi" C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\exceptions.pbi C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Keypad.pbi C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\LinkList.pbi C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\main.pbi
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part2.pbi : PDBLINK C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.pbi |  $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.pbi $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.pbi $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.pbi
+  flags = -M "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part2.pbi" C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\menu.pbi C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Print.pbi "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Pulse$ Width$ Modulation.pbi" C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\startup_sam3x.pbi
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part3.pbi : PDBLINK C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.pbi |  $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.pbi
+  flags = -M "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part3.pbi" C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\system_sam3x.pbi C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\Temperature.pbi
+
+build C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House.pbd : PDBLINK C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part0.pbi |  $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part1.pbi $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part2.pbi $
+C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part3.pbi
+  flags = -M "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House.pbd" "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part0.pbi" "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part1.pbi" "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part2.pbi" "C$:\Users\Wookie\Desktop\Project\Debug\BrowseInfo\The$ Green$ House_part3.pbi"
+

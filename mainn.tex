@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include "Calender.h"
+#include "LinkList.h"
+#include <time.h>
+#include <stdlib.h>
+#include "Temperature.h"
+
+
+int main() {
+
+    /** initialize random seed: **/
+    srand(time(NULL)); // NOLINT(cert-msc51-cpp)
+
+
+    struct LinkedList list;
+    list.id = 00;
+    list.years = 1998;
+    list.months = 01;
+    list.days = 19;
+    list.hours = 9;
+    list.minutes = 59;
+    list.seconds = 59;
+
+    int day = 24 * 60 * 60 ; // One Day that count by second
+    int week = 24 * 60 *  60 * 7; // One week that count by minuter
+    int limit = week + 3001;
+
+    struct LinkedList * memory = NULL;
+    struct LinkedList * memories = NULL;
+    /*countTemp(list, memory);*/
+
+    struct LinkedList *loop = NULL;
+    struct LinkedList *point = NULL;
+    struct LinkedList *newTemp = NULL;
+
+    for (int i = 0; i < limit ; i++){
+        updateTime(&list);
+        printf("%02d/ - %04d/%02d/%02d - %02d:%02d:%02d - %.2f\n",
+               list.id,
+               list.years, list.months,list.days,
+               list.hours, list.minutes, list.seconds,
+               list.sensorData);
+       //Measure the temperature in every second.
+       int temp = ((int)rand()); // NOLINT(cert-msc50-cpp);
+       newTemp = creat(list.id,
+                       list.years, list.months,list.days,
+                       list.hours, list.minutes, list.seconds,
+                       temp);
+       // Put them all in a loop and calculate the average.
+       insertFirst(&loop, newTemp); // Put them all in a loop for calculate the average.
+       //Count temperature in minuter
+       if (i % 60 == 0) {
+           //Create limit for the memory.
+           if (i == week){
+               limit -= week;
+               i = 0;
+               list.id = 00;
+               /*Remove the Old Recoding*/
+               removes(&memory, getID(&memory,00));
+           }
+           if (isSameId(&memory, list.id)) {
+               /*Remove the Old Recoding*/
+               removes(&memory, getID(&memory,list.id));
+           }
+           /*  printf("\n LOOP:"); printList(loop);*/
+           point = creat(list.id,
+                         list.years, list.months,list.days,
+                         list.hours, list.minutes, list.seconds,
+                         average(loop));
+           insertFirst(&memory, point); // Take the value and put them in memory;
+           freeList(&loop);// free the loop for new data
+       }
+       list.id++;
+    }
+
+    printf("\n");
+    printf("Memmory:");
+    printList(memory);
+    printf("\n");
+    printf("Memmories:");
+    printList(memories);
+
+    updateStatus( memoryDays(memory, 1));
+    printStatus(updateStatus( memoryDays(memory, 1)));
+
+    return 0;
+}

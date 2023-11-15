@@ -1,0 +1,489 @@
+#include "system_sam3x.h"
+#include "at91sam3x8.h"
+#include "mmain.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "Help.h"
+#include "Clock.h"
+#include <time.h>
+
+static volatile unsigned int time_delay = 0;    // Used to delay the program
+static volatile unsigned int time_temp = 0;     // Temperature
+char setFlag = 0;
+double temp;            //  variable defined
+char LS1Flag = 0;
+char LS2Flag = 0;
+double times = 0;
+
+/*void main(void){
+  SystemInit();                                            // Initialize system
+  SysTick_Config(SystemCoreClock / 1000);                  // Configure system
+  Init_Display();
+  Clear_Display();
+  
+  //Init_Temp();             // Initalize PMC, among other things
+  //Temp_Measure();
+  
+  //ADC_Setup();
+  //Light_Measure();
+  
+  PWM_Setup();
+
+ while(1){ 
+
+  //Update_Temp();
+  //Light_Measure();
+  //Read_Light();
+  Move_PWM(func());
+ 
+}
+}
+
+// Temperatur
+void Init_Temp(void){
+  
+  *AT91C_PMC_PCER  = (1<<12); // Peripheral Clock Enable
+  *AT91C_PIOB_PER = (1<<25);              // Activate PIOB pins    
+  *AT91C_PMC_PCER = (1 << 27);    // Peripheral Clock Enable Continued
+
+
+ 
+  *AT91C_TC0_CMR = (*AT91C_TC0_CMR & 0xfff8 | 1<<17| 1<<18); 
+  *AT91C_TC0_CCR  = (1<<0)|(1<<2);                 //  Enable and reset the clock
+
+  *AT91C_PIOB_OER  = (1<<25);           // Enable Output
+    *AT91C_PIOB_SODR = AT91C_PIO_PB25;
+      *AT91C_PIOB_CODR = AT91C_PIO_PB25;
+        times = 0;
+  while (times < 14) {}                // Wait for RESET pulse to be complete
+    *AT91C_PIOB_SODR = AT91C_PIO_PB25;
+  
+  NVIC_EnableIRQ((IRQn_Type)27);
+  NVIC_ClearPendingIRQ((IRQn_Type)27);
+  NVIC_SetPriority((IRQn_Type)27, 2);
+    *AT91C_TC0_SR; 
+ // *AT91C_TC0_IER = (1 << 6); // Enable interrupt for LDRBS (AT91C_TC_LDRBS)
+
+}
+
+void Temp_Measure(void){
+  *AT91C_PIOB_OER  = (1<<25);   // Enable output
+    *AT91C_PIOB_SODR = AT91C_PIO_PB25; // HIGH
+    *AT91C_PIOB_CODR = (1<<25);   // Clear output LOW
+        times = 0;
+  while (times < 14) {}                // Wait for RESET pulse to be complete
+  *AT91C_PIOB_SODR = AT91C_PIO_PB25; // HIgh
+    *AT91C_PIOB_CODR = (1<<25);   // Clear output'
+   Delay(25);
+    *AT91C_PIOB_SODR = AT91C_PIO_PB25; //HIGH     
+    *AT91C_PIOB_ODR = AT91C_PIO_PB25; // Disable PIO pin needed as output   
+    *AT91C_TC0_SR;    // READ
+    setFlag = 0;
+    *AT91C_TC0_CCR  = (1<<2);          // sw_reset
+    *AT91C_TC0_IER  = (1<<6);          // Enable interrupt
+}
+
+void Update_Temp(void){
+  if (setFlag == 0 )// If Rising Edge not detected
+    return;
+  temp = ((*AT91C_TC0_RB) - (*AT91C_TC0_RA));
+  temp = (temp/42);  
+  temp = ((temp/5.0)-273.15); 
+  Write_Temp(temp);
+  Temp_Measure();
+  Delay(1000000);
+  Clear_Display();
+}
+
+void TC0_Handler(void){
+  *AT91C_TC0_IDR  = (1<<6);                    // Disable interrupt                     
+  setFlag = 1;        // Rising Edge detected, set TC Flag
+}
+
+void Write_Temp(int temperatur){
+  int first = temperatur / 10;
+  int last = temperatur % 10;
+
+  Write_Data_2_Display(0x10 + first);
+    Write_Command_2_Display(0xC0);
+
+  Write_Data_2_Display(0x10 + last);
+    Write_Command_2_Display(0xC0);
+}
+
+
+// ADC
+void ADC_Setup(void){
+  *AT91C_PMC_PCER = (1 << 11); // Enable PMC_PIOA
+  *AT91C_PMC_PCER1 = (1 << 5); // Start clock for ADC
+  *AT91C_ADCC_MR = (1 << 9);
+  
+  *AT91C_ADCC_CHER = (1 << 1); // select channel in ADC_CHER 1
+  *AT91C_ADCC_CHER = (1 << 2); // select channel in ADC_CHER 2
+  
+  NVIC_ClearPendingIRQ((IRQn_Type) 37);
+  NVIC_SetPriority((IRQn_Type) 37, 0);
+  NVIC_EnableIRQ((IRQn_Type) 37);
+}
+ 
+void Light_Measure(void){
+  
+  *AT91C_ADCC_CR = (1 << 1);   // Start an ADC in ADC_CR
+  *AT91C_ADCC_IER = (1 << 1); // End of Conversion
+  *AT91C_ADCC_IER = (1 << 2); // End of Conversion
+}
+
+void ADC_Handler(void){
+  
+  int x = *AT91C_ADCC_SR; // get the one that triggered
+  if ((x & (1 << 1)) == (1 << 1)){
+    *AT91C_ADCC_IDR = (1 << 1); // Disable interrupt for ADC5
+  *AT91C_ADCC_IDR = (1 << 2); // Disable interrupt for ADC6
+    LS1Flag = 1;
+  }
+  if ((x & (1 << 2)) == (1 << 2)){
+    LS2Flag = 1;
+  *AT91C_ADCC_IDR = (1 << 1); // Disable interrupt for ADC5
+  *AT91C_ADCC_IDR = (1 << 2); // Disable interrupt for ADC6
+  }
+}
+
+void Read_Light(void){
+
+  void Light_Measure();
+  
+  if (LS1Flag == 1){ // Light Sensor 1 Has a new value
+    Write_Light_Out((*AT91C_ADCC_CDR1 * 3.3)/0xFFF);
+    LS1Flag = 0;      // Clear LS1 flag
+  }
+  if (LS2Flag  == 1){ // Light Sensor 2 Has a new value
+    Write_Light_Out((*AT91C_ADCC_CDR2 * 3.3)/0xFFF);
+    LS2Flag = 0;      // Clear LS2 flag
+  }
+  
+  Delay(1000000);
+  Clear_Display();
+}
+
+void Write_Light_Out(double light){
+   //Restart
+   Write_Data_2_Display(0x0); 
+   Write_Command_2_Display(0x24);
+   
+   int temp[50];
+   int count = 0;
+   int save;
+   int hel;
+   int dec;
+   
+   for(int x = light * 10; x !=0; count++){
+     save = x % 10;
+     temp[count] = save;
+     x = x /10;
+   }
+   
+   if(count > 3)
+     count = 3;
+   
+   if(light < 1)
+     hel = 0;
+   
+   if(light < 0.1)
+     dec = 0;
+   
+   if(hel == 0){
+     Write_Data_2_Display(0x10);    // 0
+     Write_Command_2_Display(0xC0);
+     
+     Write_Data_2_Display(0x0E);    // Font "."
+     Write_Command_2_Display(0xC0);
+     
+   } else 
+        {
+         Write_Data_2_Display(0x10 + temp[count -1]);
+         Write_Command_2_Display(0xC0);
+         
+         Write_Data_2_Display(0x0E);    //Font "." 
+         Write_Command_2_Display(0xC0);
+        }
+   
+   if (dec == 0){
+     Write_Data_2_Display(0x10); // 0
+     Write_Command_2_Display(0xC0);
+   }
+   
+   for(int i = count - 1; i > -1 ; i--){
+        Write_Data_2_Display(0x10 + temp[i]);
+        Write_Command_2_Display(0xC0);
+   }
+}
+
+// PWM
+void PWM_Setup(void){
+  *AT91C_PIOB_PDR  = (1<<17);
+  *AT91C_PIOB_ABMR = (1<<17);
+  *AT91C_PMC_PCER1 = (1 << 4); // Enable PWM Clock
+  *AT91C_PWMC_ENA = (1<<1);
+  *AT91C_PWMC_CH1_CMR = (AT91C_PWMC_CPRE_MCK_DIV_32);//(5<<1); 
+  *AT91C_PWMC_CH1_CPRDR   = (52500<<0); // (20ms) // 84 000 000 HZ / 32 * 20 ((1/frek) = period)
+  *AT91C_PWMC_CH1_CDTYR = (2625<<0);  // (1ms)*/
+}
+
+void Move_PWM(int key){
+  switch(key){
+  case 0:
+  case 1:
+  case 2:
+  case 3:
+  case 4:
+  case 5:
+  case 6:
+  case 7:
+  case 8:
+  case 9:
+    *AT91C_PWMC_CH1_CDTYUPDR = (2625 + 262.5 * key); // 10 Degrees
+    break;
+  default:
+    return;    
+  }
+  Delay(200000);
+  
+}
+
+void SysTick_Handler(void){
+  times++;
+  }
+
+
+// Lab2---------------------------------------------------------------------
+void Write_Characters_2_Display(unsigned int key) {
+  int temp[5];
+  for (int i = 0; (key % 10) != 0; i++){
+    temp[i] = key % 10;
+    key = key / 10;
+  }
+  int i = sizeof(temp)/sizeof(temp[0]);
+  while (i >= 0){
+   Write_Key_Display(temp[i]);
+   i--;
+  }
+}
+
+void Write_Command_2_Display(unsigned char command){
+  // Wait until Read_Status_Display returns OK
+  while((~Read_Status_Display() & (0xC)) == 0xC) {
+
+  }
+  
+  *AT91C_PIOC_OER = (0x2F << 12);    // make databus as input
+  *AT91C_PIOC_OER = (0xFF << 2);    // make databus as input
+  
+  *AT91C_PIOC_CODR = (0xFF << 2); // Clear databus
+  *AT91C_PIOC_SODR = (command << 2); // Set Command to databus (To get back the 2 zeroes) PC(2-9)
+  *AT91C_PIOC_CODR = (1 << 13); // Set dir as output (74chip) 
+  *AT91C_PIOC_CODR = (1 << 12); // Enable 'output' (74chip)
+  *AT91C_PIOC_OER = (0xFF << 2); // Set databus as output 
+  *AT91C_PIOC_SODR = (1 << 14); // Set C/D signal High (1 = Command) //CD High gives Command Write then WR = Low
+  *AT91C_PIOC_CODR = (1 << 15); // Clear chip select display
+  *AT91C_PIOC_CODR = (1 << 17); // Clear write display
+  Delay(20); // Make a Delay
+  *AT91C_PIOC_SODR = (1 << 15); // Set chip enable display 
+  *AT91C_PIOC_SODR = (1 << 17); // Set write display 
+  *AT91C_PIOC_SODR = (1 << 12);// Disable output (74chip)
+  *AT91C_PIOC_ODR = (0xFF << 2); // Make databus as input 
+}
+
+void Write_Data_2_Display(unsigned char data){
+  // Wait until Read_Status_Display returns an OK
+  while((~Read_Status_Display() & (0xC)) == 0xC) {
+  }
+  
+  *AT91C_PIOC_OER = (0x2F << 12); // Set databus as output 
+  *AT91C_PIOC_OER = (0xFF << 2); // Set databus as output 
+  
+  
+  *AT91C_PIOC_CODR = (0xFF << 2); // Clear databus
+  *AT91C_PIOC_SODR = (data << 2);// Set "data" to databus
+  *AT91C_PIOC_CODR = (1 << 13); // Set dir as output (74chip) 
+  *AT91C_PIOC_CODR = (1 << 12); // Enable 'output' (74chip)
+  *AT91C_PIOC_OER = (0xFF << 2); // Set databus as output 
+  *AT91C_PIOC_CODR = (1 << 14); // Set C/D signal Low (0 = data) //CD Low gives Data Write then WR = Low
+  *AT91C_PIOC_CODR = (1 << 15); // Clear chip select display
+  *AT91C_PIOC_CODR = (1 << 17); // Clear write display
+  
+   Delay(20); // Make a Delay
+  
+  *AT91C_PIOC_SODR = (1 << 15); // Set chip enable display 
+  *AT91C_PIOC_SODR = (1 << 17); // Set write display 
+  *AT91C_PIOC_SODR = (1 << 12);// Disable output (74chip)
+  *AT91C_PIOC_ODR = (0xFF << 2); // Make databus as input 
+}
+
+void Write_Key_Display(unsigned int key){
+  // Write on display
+    if (key  == 1)
+      data = 0x11;
+    else if (key == 2)
+      data = 0x12;
+    else if (key == 3)
+      data = 0x13;
+    else if (key == 4)
+      data = 0x14;
+    else if (key == 5)
+      data = 0x15;
+    else if (key == 6)
+      data = 0x16;
+    else if (key == 7)
+      data = 0x17;
+    else if (key == 8)
+      data = 0x18;
+    else if (key == 9)
+      data = 0x19;
+    else if (key == 10) // *
+      data = 0x0A;
+    else if (key == 11) // 0
+      data = 0x10;
+    else if (key == 12) // #
+      data = 0x03;
+    else if (key == 13)
+      data = 0x30;
+    else
+      return;
+  // Write the data, by incrementing ADPeach time written
+  Write_Data_2_Display(data);
+  Write_Command_2_Display(0xC0);
+  
+  // Write the data, by Setting space between every pixel
+  Write_Data_2_Display(0x00);
+  Write_Command_2_Display(0xC0);
+}
+
+int func(void){
+
+  *AT91C_PIOC_PER   =    (0x3BC); // PC(2-5), PC(7-9)
+  *AT91C_PIOD_PER   =    (0x4);   // Enable PD2
+  
+  *AT91C_PIOC_PPUDR =   (0x3BC); // Disable PC(2-5), PC(7-9)
+  *AT91C_PIOD_PPUDR =   (0x4);   // Disable  OE KEY BUS
+  
+  *AT91C_PIOD_OER   =   (0x4);   //  OE KEY BUS as output
+  *AT91C_PIOC_OER   =   (0x380);  // Make all Column pin as output
+   
+  
+  int value = 0; // Value = 0 
+  *AT91C_PIOD_CODR = (0x4);     // Clear OE KEY BUS (Active Low)
+  *AT91C_PIOC_SODR = (0x380);    // Set all Column pin as high 
+  *AT91C_PIOC_ODR =  (0x3C);  // PC(2-5) as input  
+  for(int colomn = 0; colomn < 3; colomn++){ // LOOP Column 0 - 2
+      *AT91C_PIOC_CODR = (1 << (7 + colomn)); // Clear one column at the time 
+      for(int row = 0; row < 4; row++){ // LOOP Row 0 - 3
+        //Read row and check if bit is zero
+        if ((*AT91C_PIOC_PDSR & (1 << (2 + row))) == 0){
+          value = row * 3 + colomn + 1; // Value = Row*3+Col+1;
+            Write_Key_Display(value); // print value on display
+             *AT91C_PIOC_SODR = (1 << (7 + colomn));    // Set all Column pin as high
+              *AT91C_PIOC_ODR =  (0x380);    // Make all Column pin as input 
+              return value;  // Return Value. 
+          }
+      } // end loop Row
+      *AT91C_PIOC_SODR = (1 << (7 + colomn));    // Set all Column pin as high 
+    }
+  *AT91C_PIOC_ODR =  (0x380);    // Make all Column pin as input 
+  return value;  // Return Value. 
+}
+
+void Delay(int value){
+  int i;
+  for(i = 0; i < value ;i++)
+  asm("nop");
+} 
+
+void Clear_Display(){
+  //Set Cursor at (x,y) -> (0,0)
+  Write_Data_2_Display(0x00); // start from (0,0)
+  Write_Data_2_Display(0x00); // start from (0,0)
+  Write_Command_2_Display(0x24); // Set adress pointer
+   Write_Command_2_Display(0xB0);
+  // colomn 32, 40, 64, 80(0x28)
+  // row 2, 4, 6 ,8 ,10, 12, 14, 16, 20, 24, 28, 32(0x10)
+  for (int x = 0; x < 640; x++){ // loop for colomn and row 32 * 20
+    
+      // Write "nothing" into each "pixel" of the screen
+      Write_Data_2_Display(0x00); // start from (0,0)
+   
+  }
+  Write_Command_2_Display(0xB2);
+  //Re-Set Cursor at (x,y) -> (0,0)
+  Write_Data_2_Display(0x00); // start from (0,0)
+  Write_Data_2_Display(0x00); // start from (0,0)
+  Write_Command_2_Display(0x24);  // Set adress pointer
+  
+}
+
+unsigned char Read_Status_Display(){
+  unsigned char temp;
+  
+  *AT91C_PIOC_OER = (0x1F << 12);    // make databus as input
+  *AT91C_PIOC_ODR = (0xFF << 2);    // make databus as input
+  
+  *AT91C_PIOC_SODR = (1 << 13);   // Set dir as input                      
+  *AT91C_PIOC_CODR = (1 << 12);   // Clear/enable output (74chip 0 = enable)  
+  *AT91C_PIOC_SODR = (1 << 14);     // Set C/D                               
+  *AT91C_PIOC_CODR = (1 << 15);   // Clear chip select display  CE            
+  *AT91C_PIOC_CODR = (1 << 16); // Clear read display
+  Delay(20); // Make a Delay
+  temp = (*AT91C_PIOC_PDSR & (0xFF << 2));// Read data bus and save it in temp (PSDR?)
+  *AT91C_PIOC_SODR = (1 << 15);// Set chip select display 
+  *AT91C_PIOC_SODR = (1 << 16);// Set read display 
+  *AT91C_PIOC_SODR = (1 << 12); // Disable output (74chip)
+  *AT91C_PIOC_CODR = (1 << 13); // Set dir as output (74chip)
+  return temp;
+}
+
+void Init_Display(){
+  Pin_Display();
+  *AT91C_PIOD_CODR = (0x1);   // Reset Screen
+   Delay(20);              // 10ms of delay for the screen to start and such
+  *AT91C_PIOD_SODR = (0x1);   // Make the display act normal
+    
+  Write_Data_2_Display(0x00);
+  Write_Data_2_Display(0x00);
+  Write_Command_2_Display(0x40);//Set text home address
+  Write_Data_2_Display(0x00);
+  Write_Data_2_Display(0x40);
+  Write_Command_2_Display(0x42); //Set graphic home address
+  Write_Data_2_Display(0x1e);
+  Write_Data_2_Display(0x00);
+  Write_Command_2_Display(0x41); // Set text area
+  Write_Data_2_Display(0x1e);
+  Write_Data_2_Display(0x00);
+  Write_Command_2_Display(0x43); // Set graphic area
+  Write_Command_2_Display(0x80); // text mode
+  Write_Command_2_Display(0x94); // Text on graphic off 
+  
+}
+
+void Pin_Display(){
+  *AT91C_PMC_PCER = (1 << 13); //PIOD
+  *AT91C_PMC_PCER = (1 << 14);// PIOC 
+  
+  *AT91C_PIOC_PER =     (0xFFF << 12); // enable  pin 
+  *AT91C_PIOC_PER =     (0x3FC); // enable  pin 
+  
+  *AT91C_PIOD_PER =     (0x1); // enable reset
+  
+  *AT91C_PIOC_PPUDR =     (0xFFF << 12); // disable  pin
+  *AT91C_PIOC_PPUDR =     (0x3FC); // disable  pin
+  *AT91C_PIOD_PPUDR =     (0x1); //  disable reset
+  
+  *AT91C_PIOD_OER =     (0x1); //  disble input RESET
+  *AT91C_PIOC_OER =     (1 << 18); // disble input FS
+  *AT91C_PIOC_OER =     (1 << 19); // disble input PV
+  *AT91C_PIOC_SODR =     (1 << 18); // Set FS
+  *AT91C_PIOC_CODR =     (1 << 19); // Clear RV
+
+  *AT91C_PIOC_OER =     (1<<12); // output enable Display OE
+  *AT91C_PIOC_OER =     (1<<13); // Output enable Direction
+  
+}
+

@@ -1,0 +1,75 @@
+# ninja log v5
+611	878	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/startup_sam3x.xcl	8a85ebc445bfdfe8
+1	279	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Calender.xcl	36db064363fd6117
+14	64	7026043742750282	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/LinkList.pbi	2191623c94ce1e5c
+40	271	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/exceptions.xcl	3c1fe543bca12ad
+294	935	7026169850347006	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+107	167	7026160537723393	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+295	608	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Temperature.xcl	7c790b068dace06a
+33	288	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/menu.xcl	8bafea2f09a1ce66
+1	105	7026160537094764	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/main.pbi	40f60dcb6c15ca60
+21	293	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/ADC.xcl	347fbc3a8fbac245
+356	780	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/system_sam3x.xcl	80fc69bd5f119ea3
+25	329	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Alarm.xcl	f687e67f9dc27552
+43	353	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Keypad.xcl	19a304392b72875e
+11	147	7026043743568074	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Keypad.pbi	a9476b01283dccb
+273	475	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/LinkList.xcl	c110fdcacca5d5c5
+1	36	7026141323410770	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Calender.pbi	b4dc1a61eb24c938
+290	619	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/main.xcl	55d2adbd3157a111
+281	674	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Display.xcl	206a38d0c65b2d07
+130	178	7026043743887199	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Print.pbi	84cd0ac7fc9fd9fa
+1	106	7026148264069000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/ADC.pbi	3ef194973f893169
+477	937	7024945190000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Pulse Width Modulation.xcl	e1a1ded9dae90173
+621	1059	7024945200000000	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Print.xcl	28de9333bf417788
+1088	1163	7024945201741916	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/exceptions.pbi	75c2cd21e15c3b73
+1	104	7026169842248629	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Alarm.pbi	2db81db171c20707
+109	236	7026043744475605	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Temperature.pbi	3a142103fc826abe
+1	112	7026127542091816	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Display.pbi	b3993cdcb0e7e6ed
+1242	1293	7024945203008531	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/menu.pbi	74fc170db853a3ce
+1188	1313	7024945203317697	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Pulse Width Modulation.pbi	767f8b20f30e32e8
+1164	1332	7024945203507192	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/system_sam3x.pbi	b8f35987ae21781b
+1193	1347	7024945203656791	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/startup_sam3x.pbi	bead47e36ce9cd41
+107	197	7026169843186452	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part0.pbi	ab6d5f1f1ca23573
+179	240	7026043744495570	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part2.pbi	c866822ea31e6cb1
+237	294	7026043745064019	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part3.pbi	b7c6fff93634aaaf
+199	291	7026169844133613	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+1	131	7026171409565079	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Keypad.pbi	a9476b01283dccb
+133	198	7026171410233291	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+201	291	7026171411171128	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+294	942	7026171417444253	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+1	106	7026172322982659	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Alarm.pbi	2db81db171c20707
+109	198	7026172323910235	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part0.pbi	ab6d5f1f1ca23573
+200	292	7026172324847724	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+295	943	7026172331136616	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+1	109	7026175145338573	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Keypad.pbi	a9476b01283dccb
+112	178	7026175146036434	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+180	272	7026175146993830	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+0	625	7026175204563534	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+1	113	7026175306363052	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Keypad.pbi	a9476b01283dccb
+114	178	7026175307031257	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+181	273	7026175307978743	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+276	939	7026175314421559	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+1	101	7026178680786135	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/main.pbi	40f60dcb6c15ca60
+104	162	7026178681404478	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+166	255	7026178682331676	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+257	882	7026178688385530	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+2	245	7026182960601734	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Keypad.pbi	a9476b01283dccb
+247	315	7026182961309846	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+318	448	7026182962636294	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+1	648	7026183023494154	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+1	211	7026185687916754	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/main.pbi	40f60dcb6c15ca60
+213	277	7026185688584991	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+280	374	7026185689552780	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+377	1027	7026185695865576	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+1	103	7026188007691980	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/main.pbi	40f60dcb6c15ca60
+104	167	7026188008340252	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+169	255	7026188009227894	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+259	888	7026188015331908	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+1	110	7026190076059796	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/Keypad.pbi	a9476b01283dccb
+112	177	7026190076728046	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+1	95	7026190128600281	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+97	774	7026190135172686	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86
+50	165	7026686050861833	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/main.pbi	40f60dcb6c15ca60
+167	253	7026686051738940	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House_part1.pbi	56ef77b11b8e0b86
+256	357	7026686052785702	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbd	498aeb1265bdc9be
+360	1055	7026686059550036	C:/Users/Wookie/Desktop/Project/Debug/BrowseInfo/The Green House.pbw	20f476a568b4eb86

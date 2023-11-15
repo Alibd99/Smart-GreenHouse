@@ -1,0 +1,344 @@
+#include "system_sam3x.h"
+#include "at91sam3x8.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "Lab3.h"
+#include "Lab3.c"
+#include "main.h"
+
+
+
+
+
+int nInterrupts = 0;
+int sysAlarm    = 0;
+
+
+
+int sec    = 0;
+int minute = 0;
+int hours  = 0;
+int day    = 0;
+int month  = 0;
+int year   = 0;
+int newSec = 0;
+int newHour= 0;
+
+
+int main(void) {
+  
+SystemInit();
+SysTick_Config(SystemCoreClock / 1000);
+Init_Display();
+Clear_Display();
+
+
+write_time();
+print_date();
+
+
+  while(1){
+
+write_date();
+//print_time();
+    
+updatedate();
+  
+  }
+   return(0);
+}
+
+void Print_from_data(char key){
+  key = key - ' '; 
+  Write_Data_2_Display(key);
+  Write_Command_2_Display(0xC0);
+}
+
+void Print_to_screen(char buff[]){
+  int i = 0;
+  while (buff[i] != '\0'){
+  Print_from_data(buff[i]);
+  i++; 
+  }
+}
+
+void writeDecDisp(int nDec){
+    char cValue[100];   //!!!RÄkna ut antalet tecken
+    sprintf(cValue, "%d", nDec);
+    Print_to_screen(cValue);
+}
+
+
+
+
+void SysTick_handler(void){
+  nInterrupts++;
+  sysAlarm++;
+}
+  
+
+void write_time(){
+
+  
+  if (nInterrupts > 1000){
+    nInterrupts = 0;
+    sec++;
+  }
+  
+  if (sec == 60){
+    sec = 0;
+    newSec = 1;
+    minute++; 
+  }
+ 
+  if (minute == 60){
+    minute = 0;
+    hours++;
+  }
+ 
+  if (hours == 24){
+    hours = 0;
+    newHour = 1;
+    day++;
+  }
+}
+  
+void print_date(void){
+   
+    
+  if (month == 1 && day == 31){ // Januari
+    day = 1;
+    month++;
+  }
+  
+  if (month == 2 && day == 28){ // Feb
+    day = 1;
+    month++;
+  }
+  if (month == 3 && day == 31){ // March
+    day = 1;
+    month++;
+  }
+  if (month == 4 && day == 30){ // April
+    day = 1;
+    month++;
+  }
+  if (month == 5 && day == 31){ // May
+    day = 1;
+    month++;
+  }
+  if (month == 6 && day == 30){ // Jun
+    day = 1;
+    month++;
+  }
+  if (month == 7 && day == 31){ // Jul
+    day = 1;
+    month++;
+  }
+  if (month == 8 && day == 31){ // Agu
+    day = 1;
+    month++;
+  }
+  if (month == 9 && day == 30){ // Sep
+    day = 1;
+    month++;
+  }      
+  if (month == 10 && day == 31){ // Oct
+    day = 1;
+    month++;
+  }
+  if (month == 11 && day == 30){ // Nov
+    day = 1;
+    month++;
+  }
+                          
+  if (month == 12 && day == 31){ // Dec
+    day = 1;
+    month = 1;
+    year++;   
+  }           
+ }
+  
+void print_time(void){ // write the time on display
+ 
+  Write_Data_2_Display(0x28);
+  Write_Data_2_Display(0x00);
+  Write_Command_2_Display(0x24);
+  
+  Print_to_screen("Time:");
+  Print_to_screen(" ");
+  if (hours < 10){
+  Print_to_screen("0");
+  }
+  writeDecDisp(hours);
+  Print_to_screen(":");
+  
+  if (minute < 10){
+  Print_to_screen("0");
+  }
+  writeDecDisp(minute);
+  Print_to_screen(":");
+  
+  if (sec < 10){
+  Print_to_screen("0");
+  }
+  writeDecDisp(sec);
+  Print_to_screen(" ");
+  
+  Delay(1000000);
+
+}
+
+void write_date(void){ // write date on display
+ 
+  Write_Data_2_Display(0x00);
+  Write_Data_2_Display(0x00);
+  Write_Command_2_Display(0x24);
+ 
+  Print_to_screen("Date:");
+  Print_to_screen(" ");
+  
+   writeDecDisp(year);
+   Print_to_screen("/");
+   
+   
+    if (month < 10)
+    Print_to_screen("0");
+    writeDecDisp(month);
+    Print_to_screen("/");
+    
+
+  if (day < 10 )
+  Print_to_screen("0");
+  writeDecDisp(day);
+  Print_to_screen(" ");
+  
+  Delay(1000000);
+  
+}
+
+
+void updatedate(){
+  int a;
+  int x = 0; // counter
+  int value = 0;
+  int y = 1;
+
+      Write_Data_2_Display(0x06);
+      Write_Data_2_Display(0x00);
+      Write_Command_2_Display(0x24);
+
+  while (x != 10){
+  a = func();
+  Delay(2000000);
+  
+    
+//year --------------------------------------------------------
+   if (x == 0){ 
+     x = 0;
+     
+   if(x < 4){
+     if (a < 10){
+     x++;
+    
+
+      Write_Key_Display(a);
+      value = value + ((a * 1000) / y);
+ 	y = (y * 10);
+       
+     }
+  }
+}
+  
+   else if (x == 4){
+     Print_to_screen("/");
+     year = value;
+     value = 0;
+     x++;   
+ }
+
+   
+  //month----------------------------------------------------------------------
+ else if (x == 5){ // month first number 31 / 12 / 2022 x plats och a besätmma siffror gränser
+    if (a < 2){  
+    value = a * 10;
+    x++;
+    /*
+     Write_Data_2_Display(0xB);
+     Write_Data_2_Display(0x00);
+     Write_Command_2_Display(0x24);
+*/
+     Write_Key_Display(a);
+
+    }
+  }
+  
+  else if(x == 6){
+    if (a < 3){
+      value = value + a;
+      x++;
+/*
+      Write_Data_2_Display(0xC);
+      Write_Data_2_Display(0x00);
+      Write_Command_2_Display(0x24);
+*/
+      Write_Key_Display(a);
+   }  
+ }
+ 
+  else if (x == 7){
+     Print_to_screen("/");
+     month = value;
+     value = 0;
+     x++;   
+  }
+  
+ // day-------------------------------------------------------------
+   int da = 0;
+    if (x == 8){ // days first number 2022 / 12 / 31 x plats och a besätmma siffror gränser
+     if (a < 4){
+     value = (a * 10);
+     da = a;
+     x++; 
+/*
+   Write_Data_2_Display(0xE);
+   Write_Data_2_Display(0x00);
+   Write_Command_2_Display(0x24);
+  
+*/
+ Write_Key_Display(a);
+  }
+ }
+  
+   else {
+     if(da < 3){
+      if(a < 10){ //days second number 
+     value = value + a;
+     x++;
+     day = value;
+   /*
+      Write_Data_2_Display(0xF);
+      Write_Data_2_Display(0x00);
+      Write_Command_2_Display(0x24);
+*/
+      Write_Key_Display(a);
+     }
+   }
+   
+     else{ 
+       if(a < 2){  // there is no day > 31
+    
+    value = value + a;
+    x++;
+    day = value;
+    /*
+     Write_Data_2_Display(0xF);
+     Write_Data_2_Display(0x00);
+     Write_Command_2_Display(0x24);
+*/
+     Write_Key_Display(a);
+    }
+   }
+  }
+ }
+}
